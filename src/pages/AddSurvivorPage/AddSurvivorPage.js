@@ -11,14 +11,14 @@ const validationSchema = Yup.object().shape({
     .integer("Number must be an integer")
     .required("Required"),
   gender: Yup.string().required("Required"),
-  lastLocationX: Yup.number()
-    .min(0, "Minimum is 0")
-    .max(150, "Maximum is 150")
+  lastLocationLat: Yup.number()
+    .min(0, "Min 0")
+    .max(150, "Max 150")
     .required("Required")
     .integer("Number must be an integer"),
-  lastLocationY: Yup.number()
-    .min(0, "Minimum is 0")
-    .max(150, "Maximum is 150")
+  lastLocationLng: Yup.number()
+    .min(0, "Min 0")
+    .max(150, "Max 150")
     .integer("Number must be an integer")
     .required("Required"),
   fijiWater: Yup.number()
@@ -49,16 +49,32 @@ const AddSurvivorPage = () => {
       name: "",
       age: "",
       gender: "male",
-      lastLocationX: "",
-      lastLocationY: "",
+      lastLocationLat: "",
+      lastLocationLng: "",
       fijiWater: "",
       campbellSoup: "",
       firstAidPouch: "",
       ak47: "",
     },
     validationSchema,
-    onSubmit: (values, { setSubmitting }) => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: async (values, { setSubmitting }) => {
+      setSubmitting(true);
+
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/people`,
+        {
+          method: "POST",
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(values),
+        }
+      );
+
+      const data = await response.json();
+      alert(JSON.stringify(data, null, 2));
+
       setSubmitting(false);
     },
   });

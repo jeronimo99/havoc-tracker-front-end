@@ -65,38 +65,38 @@ const AddSurvivor = ({
         <Line>
           <Column>
             <Line>
-              <CoordLabel htmlFor="lastLocationX">X</CoordLabel>
+              <CoordLabel htmlFor="lastLocationLat">Lat</CoordLabel>
               <CoordInput
-                htmlFor="lastLocationX"
-                id="lastLocationX"
+                htmlFor="lastLocationLat"
+                id="lastLocationLat"
                 type="number"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.lastLocationX}
+                value={values.lastLocationLat}
               />
             </Line>
             <Error>
-              {errors.lastLocationX &&
-                touched.lastLocationX &&
-                errors.lastLocationX}
+              {errors.lastLocationLat &&
+                touched.lastLocationLat &&
+                errors.lastLocationLat}
             </Error>
           </Column>
           <Column>
             <Line>
-              <CoordLabel htmlFor="lastLocationY">Y</CoordLabel>
+              <CoordLabel htmlFor="lastLocationLng">Long</CoordLabel>
               <CoordInput
-                htmlFor="lastLocationY"
-                id="lastLocationY"
+                htmlFor="lastLocationLng"
+                id="lastLocationLng"
                 type="number"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.lastLocationY}
+                value={values.lastLocationLng}
               />
             </Line>
             <Error>
-              {errors.lastLocationY &&
-                touched.lastLocationY &&
-                errors.lastLocationY}
+              {errors.lastLocationLng &&
+                touched.lastLocationLng &&
+                errors.lastLocationLng}
             </Error>
           </Column>
         </Line>
