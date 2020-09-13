@@ -1,14 +1,11 @@
 import React from "react";
-import { Wrapper, Link } from "./styles";
+import { Wrapper, Link, LastLink } from "./styles";
 
-const Sidebar = ({ menu }) => {
+const Sidebar = () => {
   return (
     <Wrapper>
-      {menu.map((link) => (
-        <Link key={Math.random()} to={link.url}>
-          {link.title}
-        </Link>
-      ))}
+      <Link to={"add-survivor"}>Add Survivor</Link>
+      <LastLink to={"survivors"}>Survivors</LastLink>
     </Wrapper>
   );
 };

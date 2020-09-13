@@ -60,21 +60,23 @@ const AddSurvivorPage = () => {
     onSubmit: async (values, { setSubmitting }) => {
       setSubmitting(true);
 
-      const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/people`,
-        {
-          method: "POST",
-          headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(values),
-        }
-      );
+      try {
+        await fetch(
+          `${process.env.REACT_APP_BACKEND_URL}/people`,
+          {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(values),
+          }
+        );
 
-      const data = await response.json();
-      alert(JSON.stringify(data, null, 2));
-
+        alert("Created with success!");
+      } catch (err) {
+        console.log("Server is offline. Try again later.");
+      }
       setSubmitting(false);
     },
   });

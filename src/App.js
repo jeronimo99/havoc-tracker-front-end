@@ -10,6 +10,7 @@ import Sidebar from "./components/Sidebar";
 import {Main} from "./components/styles";
 import LandingPage from "./pages/LandingPage";
 import AddSurvivorPage from "./pages/AddSurvivorPage";
+import SurvivorsPage from "./pages/SurvivorsPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Switch>
             <Route path="/" exact component={LandingPage} />
             <Route path="/add-survivor" component={AddSurvivorPage} />
+            <Route path="/survivors" component={SurvivorsPage} />
             <Redirect to="/" />
           </Switch>
         </Main>

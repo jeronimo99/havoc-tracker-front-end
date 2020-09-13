@@ -8,14 +8,36 @@ export const Wrapper = styled.div`
   background: ${(props) => props.theme.colors.background};
 `;
 
-export const Form = styled.div`
-  flex: 0 0 300px;
+export const Form = styled.form`
+  width: 700px;
   display: flex;
-  flex-direction: column;
-  background: ${(props) => props.theme.colors.primary};
-  border: 1px solid ${(props) => props.theme.colors.primaryDark};
+  background: ${(props) => props.theme.colors.secondaryLight};
+  border: 1px solid ${(props) => props.theme.colors.secondaryDark};
   padding: 15px;
   border-radius: 3px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+`;
+
+export const InfoColumn = styled.div`
+  flex: 1 1 500px;
+  display: flex;
+  flex-direction: column;
+  @media (max-width: 768px) {
+    flex: 1;
+  }
+`;
+
+export const InventoryColumn = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+  @media (max-width: 768px) {
+    margin-left: 0;
+  }
 `;
 
 export const Title = styled.h2`
@@ -34,14 +56,20 @@ export const TextInput = styled.input`
   height: 30px;
   padding: 5px;
   border-radius: 3px;
-  border: 1px solid ${(props) => props.theme.colors.primaryDark};
+  border: 1px solid ${(props) => props.theme.colors.secondaryDark};
+  :focus {
+    border: 1px solid ${(props) => props.theme.colors.primaryDark};
+  }
 `;
 
 export const SelectInput = styled.select`
   border: black;
   height: 30px;
   border-radius: 3px;
-  border: 1px solid ${(props) => props.theme.colors.primaryDark};
+  border: 1px solid ${(props) => props.theme.colors.secondaryDark};
+  :focus {
+    border: 1px solid ${(props) => props.theme.colors.primaryDark};
+  }
 `;
 
 export const Line = styled.div`
@@ -82,7 +110,7 @@ export const Subtitle = styled.h3`
 
 export const Button = styled.button`
   height: 40px;
-  width: 80px;
+  width: 100%;
   margin-top: 12px;
   align-self: flex-end;
   display: flex;
@@ -93,7 +121,6 @@ export const Button = styled.button`
   cursor: pointer;
   border: 1px solid ${(props) => props.theme.colors.secondary};
   background: ${props => props.theme.colors.secondaryLight};
-  color: ${props => props.theme.fonts.secondaryLight};
   transition: 0.2s;
   :hover {
     background: ${props => props.theme.colors.secondary};

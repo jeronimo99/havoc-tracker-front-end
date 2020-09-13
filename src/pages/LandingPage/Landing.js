@@ -1,5 +1,5 @@
 import React from "react";
-import { Wrapper, Menu, Card } from "./styles";
+import { Wrapper } from "./styles";
 
 const Landing = ({ menu }) => {
   return (
