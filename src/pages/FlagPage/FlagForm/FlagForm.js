@@ -28,19 +28,19 @@ const IdForm = ({
         <Loader />
       ) : (
         <Form>
-          <Title htmlFor="id">Enter your identification pass</Title>
+          <Title htmlFor="infected">Enter the name of the infected</Title>
           <InputGroup>
             <Input
-              id="id"
+              id="infected"
               type="text"
               onChange={handleChange}
               onBlur={handleBlur}
-              value={values.id}
+              value={values.infected}
             />
-            <Error>{touched.id && errors.id}</Error>
+            <Error>{touched.infected && errors.infected}</Error>
           </InputGroup>
           <Button type="submit" disabled={isSubmitting} onClick={handleSubmit}>
-            Connect
+            Submit
           </Button>
         </Form>
       )}

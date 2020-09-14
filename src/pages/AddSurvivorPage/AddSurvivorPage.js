@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import AddSurvivor from "./AddSurvivor";
@@ -44,6 +44,42 @@ const validationSchema = Yup.object().shape({
 });
 
 const AddSurvivorPage = () => {
+  const [modal, setModal] = useState({ status: false, message: "" });
+
+  const onCloseModal = () => {
+    setModal({ status: false, message: "" });
+  };
+
+  const sendRequest = async (values, { setSubmitting }) => {
+    setSubmitting(true);
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/people`,
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(values),
+        }
+      );
+      const person = await response.json();
+      formik.resetForm();
+      setSubmitting(false);
+      setModal({
+        status: true,
+        message: `Success. Identification pass: ${person._id}`,
+      });
+    } catch (err) {
+      setSubmitting(false);
+      setModal({
+        status: true,
+        message: "Server is not responding. Try again please.",
+      });
+    }
+  };
+
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -57,37 +93,8 @@ const AddSurvivorPage = () => {
       ak47: "",
     },
     validationSchema,
-    onSubmit: async (values, { setSubmitting }) => {
-      setSubmitting(true);
-
-      try {
-        const response = await fetch(
-          `${process.env.REACT_APP_BACKEND_URL}/people`,
-          {
-            method: "POST",
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(values),
-          }
-        );
-        const person = await response.json();
-        formik.resetForm();
-        setSubmitting(false);
-        setModal({status: true, message: `Success. Identification pass: ${person._id}`});
-      } catch (err) {
-        setSubmitting(false);
-        setModal({status: true, message: "Server is not responding. Try again please."});
-      }
-    },
+    onSubmit: sendRequest,
   });
-
-  const [modal, setModal] = useState({status: false, message: ''});
-
-  const onCloseModal = () => {
-    setModal({status: false, message: ''})
-  }
 
   return (
     <AddSurvivor

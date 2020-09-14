@@ -12,6 +12,7 @@ import LandingPage from "./pages/LandingPage";
 import AddSurvivorPage from "./pages/AddSurvivorPage";
 import SurvivorsPage from "./pages/SurvivorsPage";
 import UpdatePage from './pages/UpdatePage';
+import FlagPage from './pages/FlagPage';
 
 function App() {
   return (
@@ -22,8 +23,9 @@ function App() {
           <Switch>
             <Route path="/" exact component={LandingPage} />
             <Route path="/add-survivor" component={AddSurvivorPage} />
-            <Route path="/survivors" exact component={SurvivorsPage} />
+            <Route path="/survivors" component={SurvivorsPage} />
             <Route path="/update-location" component={UpdatePage} />
+            <Route path="/flag-infected" component={FlagPage} />
             <Redirect to="/" />
           </Switch>
         </Main>
