@@ -43,7 +43,7 @@ const AddSurvivor = ({
             onBlur={handleBlur}
             value={values.name}
           />
-          <Error>{errors.name && touched.name && errors.name}</Error>
+          <Error>{touched.name && errors.name}</Error>
 
           <Label htmlFor="age">Age</Label>
           <TextInput
@@ -53,7 +53,7 @@ const AddSurvivor = ({
             onBlur={handleBlur}
             value={values.age}
           />
-          <Error>{errors.age && touched.age && errors.age}</Error>
+          <Error>{touched.age && errors.age}</Error>
 
           <Label htmlFor="gender">Gender</Label>
           <SelectInput
@@ -66,7 +66,7 @@ const AddSurvivor = ({
             <option value="male">Male</option>
             <option value="female">Female</option>
           </SelectInput>
-          <Error>{errors.gender && touched.gender && errors.gender}</Error>
+          <Error>{touched.gender && errors.gender}</Error>
 
           <Label>Location</Label>
           <Line>
@@ -83,8 +83,7 @@ const AddSurvivor = ({
                 />
               </Line>
               <Error>
-                {errors.lastLocationLat &&
-                  touched.lastLocationLat &&
+                {touched.lastLocationLat &&
                   errors.lastLocationLat}
               </Error>
             </Column>
@@ -101,8 +100,7 @@ const AddSurvivor = ({
                 />
               </Line>
               <Error>
-                {errors.lastLocationLng &&
-                  touched.lastLocationLng &&
+                {touched.lastLocationLng &&
                   errors.lastLocationLng}
               </Error>
             </Column>
@@ -121,7 +119,7 @@ const AddSurvivor = ({
             value={values.fijiWater}
           />
           <Error>
-            {errors.fijiWater && touched.fijiWater && errors.fijiWater}
+            {touched.fijiWater && errors.fijiWater}
           </Error>
 
           <Label htmlFor="campbellSoup">Campbell soup</Label>
@@ -133,7 +131,7 @@ const AddSurvivor = ({
             value={values.campbellSoup}
           />
           <Error>
-            {errors.campbellSoup && touched.campbellSoup && errors.campbellSoup}
+            {touched.campbellSoup && errors.campbellSoup}
           </Error>
 
           <Label htmlFor="firstAidPouch">First aid pouch</Label>
@@ -145,8 +143,7 @@ const AddSurvivor = ({
             value={values.firstAidPouch}
           />
           <Error>
-            {errors.firstAidPouch &&
-              touched.firstAidPouch &&
+            {touched.firstAidPouch &&
               errors.firstAidPouch}
           </Error>
 
@@ -158,7 +155,7 @@ const AddSurvivor = ({
             onBlur={handleBlur}
             value={values.ak47}
           />
-          <Error>{errors.ak47 && touched.ak47 && errors.ak47}</Error>
+          <Error>{touched.ak47 && errors.ak47}</Error>
 
           {isSubmitting ? <Loader/> : <Button type="submit" disabled={isSubmitting} onClick={handleSubmit}>
             Submit

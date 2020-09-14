@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Survivors from "./Survivors";
 
 const SurvivorsPage = () => {
   const [survivors, setSurvivors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const fetchSurvivors = async () => {
+  const fetchSurvivors = useCallback(async () => {
     setIsLoading(true);
     try {
       const response = await fetch(
@@ -17,11 +17,11 @@ const SurvivorsPage = () => {
       onErrorModal();
     }
     setIsLoading(false);
-  };
+  }, [])
 
   useEffect(() => {
     fetchSurvivors();
-  }, []);
+  }, [fetchSurvivors]);
 
   const [modal, setModal] = useState({ status: false, message: "" });
 

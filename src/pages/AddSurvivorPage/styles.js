@@ -43,7 +43,7 @@ export const InventoryColumn = styled.div`
 export const Title = styled.h2`
   display: flex;
   justify-content: center;
-  font-size: ${props => props.theme.fontSizes.large};
+  font-size: ${props => props.theme.fontSizes.huge};
   margin: 10px 0;
 `;
 
@@ -52,7 +52,6 @@ export const Label = styled.label`
 `;
 
 export const TextInput = styled.input`
-  border: black;
   height: 30px;
   padding: 5px;
   border-radius: 3px;
@@ -63,7 +62,6 @@ export const TextInput = styled.input`
 `;
 
 export const SelectInput = styled.select`
-  border: black;
   height: 30px;
   border-radius: 3px;
   border: 1px solid ${(props) => props.theme.colors.secondaryDark};

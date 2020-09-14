@@ -24,7 +24,7 @@ export const Link = styled(NavLink)`
   display: flex;
   justify-content: center;
   transition: 0.2s;
-  :hover {
+  :hover, &.active {
     background: ${props => props.theme.colors.primaryLight};
   }
   :last-child {
