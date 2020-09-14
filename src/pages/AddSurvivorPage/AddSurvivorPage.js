@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import AddSurvivor from "./AddSurvivor";
@@ -61,7 +61,7 @@ const AddSurvivorPage = () => {
       setSubmitting(true);
 
       try {
-        await fetch(
+        const response = await fetch(
           `${process.env.REACT_APP_BACKEND_URL}/people`,
           {
             method: "POST",
@@ -72,14 +72,22 @@ const AddSurvivorPage = () => {
             body: JSON.stringify(values),
           }
         );
-
-        alert("Created with success!");
+        const person = await response.json();
+        formik.resetForm();
+        setSubmitting(false);
+        setModal({status: true, message: `Success. Identification pass: ${person._id}`});
       } catch (err) {
-        console.log("Server is offline. Try again later.");
+        setSubmitting(false);
+        setModal({status: true, message: "Server is not responding. Try again please."});
       }
-      setSubmitting(false);
     },
   });
+
+  const [modal, setModal] = useState({status: false, message: ''});
+
+  const onCloseModal = () => {
+    setModal({status: false, message: ''})
+  }
 
   return (
     <AddSurvivor
@@ -89,7 +97,9 @@ const AddSurvivorPage = () => {
       handleChange={formik.handleChange}
       handleBlur={formik.handleBlur}
       handleSubmit={formik.handleSubmit}
-      isSubmiting={formik.isSubmiting}
+      isSubmitting={formik.isSubmitting}
+      modal={modal}
+      onCloseModal={onCloseModal}
     />
   );
 };

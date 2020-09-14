@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
 
 export const Wrapper = styled.div`
   min-height: 100vh;
@@ -127,4 +127,19 @@ export const Button = styled.button`
     color: ${props => props.theme.fonts.secondary};
     border: 1px solid ${(props) => props.theme.colors.secondaryDark};
   }
+`;
+
+const spin = keyframes`
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+`;
+
+export const Loader = styled.div`
+  border: 4px solid ${props => props.theme.colors.secondaryLight};
+  border-top: 4px solid ${props => props.theme.colors.secondaryDark};
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin: 12px auto 0 auto;
+  animation: ${spin} 1.0s linear infinite;
 `;

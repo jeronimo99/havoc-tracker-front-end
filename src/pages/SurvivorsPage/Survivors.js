@@ -11,31 +11,55 @@ import {
   NotInfected,
   ItemLine,
   Item,
+  LoaderWrapper,
+  Loader,
 } from "./styles";
+import Modal from '../../components/Modal';
 
-const Survivors = ({ survivors }) => {
+const Survivors = ({ survivors, isLoading, modal, onCloseModal }) => {
   return (
-    <Wrapper>
-      {survivors.map((survivor) => (
-        <Card key={survivor._id} >
-          <Name>{survivor.name}</Name>
-          <Line>
-            <Age>Age: {survivor.age}</Age>
-            <Gender>{survivor.gender.charAt(0).toUpperCase() + survivor.gender.slice(1)}</Gender>
-          </Line>
-          <Line>
-            <Location>Last Location: ({survivor.lastLocation.lat}, {survivor.lastLocation.lng})</Location>
-            {survivor.isInfected ? <Infected>Infected</Infected> : <NotInfected>Not infected</NotInfected>}
-          </Line>
-          {!survivor.isInfected && <ItemLine>
-            <Item>Water: {survivor.inventory.fijiWater}</Item>
-            <Item>Soup: {survivor.inventory.campbellSoup}</Item>
-            <Item>First aid: {survivor.inventory.firstAidPouch}</Item>
-            <Item>ak47: {survivor.inventory.ak47}</Item>
-          </ItemLine>}
-        </Card>
-      ))}
-    </Wrapper>
+    <>
+      {isLoading ? (
+        <LoaderWrapper>
+          <Loader />
+        </LoaderWrapper>
+      ) : (
+        <Wrapper>
+          {survivors.map((survivor) => (
+            <Card key={survivor._id} to={`/survivors/${survivor._id}`}>
+              <Name>{survivor.name}</Name>
+              <Line>
+                <Age>Age: {survivor.age}</Age>
+                <Gender>
+                  {survivor.gender.charAt(0).toUpperCase() +
+                    survivor.gender.slice(1)}
+                </Gender>
+              </Line>
+              <Line>
+                <Location>
+                  Last Location: ({survivor.lastLocation.lat},{" "}
+                  {survivor.lastLocation.lng})
+                </Location>
+                {survivor.isInfected ? (
+                  <Infected>Infected</Infected>
+                ) : (
+                  <NotInfected>Not infected</NotInfected>
+                )}
+              </Line>
+              {!survivor.isInfected && (
+                <ItemLine>
+                  <Item>Water: {survivor.inventory.fijiWater}</Item>
+                  <Item>Soup: {survivor.inventory.campbellSoup}</Item>
+                  <Item>First aid: {survivor.inventory.firstAidPouch}</Item>
+                  <Item>AK-47: {survivor.inventory.ak47}</Item>
+                </ItemLine>
+              )}
+            </Card>
+          ))}
+          {modal.status && <Modal onCloseModal={onCloseModal} >{modal.message}</Modal>}
+        </Wrapper>
+      )}
+    </>
   );
 };
 

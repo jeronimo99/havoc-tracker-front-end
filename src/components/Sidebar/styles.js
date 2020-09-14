@@ -20,15 +20,14 @@ export const Wrapper = styled.aside`
 export const Link = styled(NavLink)`
   border-top: 1px solid ${props => props.theme.colors.primaryDark};
   color: ${props => props.theme.fonts.primary};
-  padding: 10px;
+  padding: 20px;
   display: flex;
   justify-content: center;
   transition: 0.2s;
   :hover {
     background: ${props => props.theme.colors.primaryLight};
   }
-`;
-
-export const LastLink = styled(Link)`
-  border-bottom: 1px solid ${props => props.theme.colors.primaryDark};
+  :last-child {
+    border-bottom: 1px solid ${props => props.theme.colors.primaryDark};
+  }
 `;

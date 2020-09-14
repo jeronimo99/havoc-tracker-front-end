@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
 
 export const Wrapper = styled.div`
   display: grid;
@@ -20,12 +20,8 @@ export const Card = styled.div`
   height: 150px;
   background: ${props => props.theme.colors.secondary};
   border: 1px solid ${props => props.theme.colors.secondaryDark};
+  color: ${props => props.theme.fonts.primary};
   border-radius: 3px;
-  transition: 0.2s;
-  cursor: pointer;
-  :hover {
-    background: ${props => props.theme.colors.secondaryLight};
-  }
 `;
 
 export const Name = styled.h3`
@@ -68,4 +64,25 @@ export const ItemLine = styled.div`
 
 export const Item = styled.span`
   font-size: ${props => props.theme.fontSizes.small};
+`;
+
+const spin = keyframes`
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+`;
+
+export const LoaderWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+`;
+
+export const Loader = styled.div`
+  border: 6px solid ${props => props.theme.colors.background};
+  border-top: 6px solid ${props => props.theme.colors.secondary};
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: ${spin} 1.0s linear infinite;
 `;

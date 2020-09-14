@@ -11,6 +11,7 @@ import {Main} from "./components/styles";
 import LandingPage from "./pages/LandingPage";
 import AddSurvivorPage from "./pages/AddSurvivorPage";
 import SurvivorsPage from "./pages/SurvivorsPage";
+import SurvivorPage from "./pages/SurvivorPage";
 
 function App() {
   return (
@@ -21,7 +22,8 @@ function App() {
           <Switch>
             <Route path="/" exact component={LandingPage} />
             <Route path="/add-survivor" component={AddSurvivorPage} />
-            <Route path="/survivors" component={SurvivorsPage} />
+            <Route path="/survivors" exact component={SurvivorsPage} />
+            <Route path="/survivors/:id" component={SurvivorPage} />
             <Redirect to="/" />
           </Switch>
         </Main>

@@ -15,7 +15,9 @@ import {
   Error,
   Subtitle,
   Button,
+  Loader
 } from "./styles";
+import Modal from '../../components/Modal';
 
 const AddSurvivor = ({
   values,
@@ -24,7 +26,9 @@ const AddSurvivor = ({
   handleChange,
   handleBlur,
   handleSubmit,
-  isSubmiting,
+  isSubmitting,
+  modal,
+  onCloseModal
 }) => {
   return (
     <Wrapper>
@@ -156,11 +160,12 @@ const AddSurvivor = ({
           />
           <Error>{errors.ak47 && touched.ak47 && errors.ak47}</Error>
 
-          <Button type="submit" disabled={isSubmiting} onClick={handleSubmit}>
+          {isSubmitting ? <Loader/> : <Button type="submit" disabled={isSubmitting} onClick={handleSubmit}>
             Submit
-          </Button>
+          </Button>}
         </InventoryColumn>
       </Form>
+      {modal.status && <Modal onCloseModal={onCloseModal} >{modal.message}</Modal>}
     </Wrapper>
   );
 };
