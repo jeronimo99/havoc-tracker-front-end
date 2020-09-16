@@ -4,10 +4,11 @@ import * as Yup from "yup";
 import IdForm from "./IdForm";
 
 const validationSchema = Yup.object().shape({
-  id: Yup.string().required("Required"),
+  id1: Yup.string().required("Required"),
+  id2: Yup.string().required("Required"),
 });
 
-const IdContainer = ({ setId, setUsername }) => {
+const IdContainer = ({ setUser1, setUser2 }) => {
   const [modal, setModal] = useState({ status: false, message: "" });
 
   const onCloseModal = () => {
@@ -17,22 +18,46 @@ const IdContainer = ({ setId, setUsername }) => {
   const sendRequest = async (values, { setSubmitting }) => {
     setSubmitting(true);
     try {
-      const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/people/${values.id}`
-      );
-      const data = await response.json();
-      if (response.status === 500) {
+      if (values.id1 === values.id2) {
         setModal({
           status: true,
-          message: data.message,
+          message: "You can't trade with yourself.",
+        });
+        formik.resetForm();
+        return;
+      }
+
+      const user1Response = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/people/${values.id1}`
+      );
+      const user1Data = await user1Response.json();
+
+      const user2Response = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/people/${values.id2}`
+      );
+      const user2Data = await user2Response.json();
+
+      if (user1Response.status === 500 || user2Response.status === 500) {
+        setModal({
+          status: true,
+          message: "Something wrong. Could not find the related survivors.",
+        });
+        formik.resetForm();
+        return;
+      }
+
+      if (user1Data.isInfected || user2Data.isInfected) {
+        setModal({
+          status: true,
+          message: "Infected people can't trade.",
         });
         formik.resetForm();
         return;
       }
       formik.resetForm();
-      setUsername(data.name);
       setSubmitting(false);
-      setId(data._id);
+      setUser1(user1Data);
+      setUser2(user2Data);
     } catch (err) {
       setModal({
         status: true,
@@ -44,7 +69,8 @@ const IdContainer = ({ setId, setUsername }) => {
 
   const formik = useFormik({
     initialValues: {
-      id: "",
+      id1: "",
+      id2: "",
     },
     validationSchema,
     onSubmit: sendRequest,

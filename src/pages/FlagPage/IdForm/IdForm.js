@@ -2,7 +2,6 @@ import React from "react";
 import {
   Wrapper,
   Form,
-  Greetings,
   Title,
   InputGroup,
   Input,
@@ -12,7 +11,7 @@ import {
 } from "./styles";
 import Modal from "../../../components/Modal";
 
-const FlagForm = ({
+const IdForm = ({
   values,
   errors,
   touched,
@@ -22,7 +21,6 @@ const FlagForm = ({
   isSubmitting,
   modal,
   onCloseModal,
-  username,
 }) => {
   return (
     <Wrapper>
@@ -30,20 +28,19 @@ const FlagForm = ({
         <Loader />
       ) : (
         <Form>
-          <Greetings>Welcome {username}</Greetings>
-          <Title htmlFor="infected">Enter the infected name</Title>
+          <Title htmlFor="id">Enter your identification pass</Title>
           <InputGroup>
             <Input
-              id="infected"
+              id="id"
               type="text"
               onChange={handleChange}
               onBlur={handleBlur}
-              value={values.infected}
+              value={values.id}
             />
-            <Error>{touched.infected && errors.infected}</Error>
+            <Error>{touched.id && errors.id}</Error>
           </InputGroup>
           <Button type="submit" disabled={isSubmitting} onClick={handleSubmit}>
-            Submit
+            Connect
           </Button>
         </Form>
       )}
@@ -54,4 +51,4 @@ const FlagForm = ({
   );
 };
 
-export default FlagForm;
+export default IdForm;

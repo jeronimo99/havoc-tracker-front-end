@@ -1,22 +1,13 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import LocationForm from "./LocationForm";
+import LocationForm from "./FlagForm";
 
 const validationSchema = Yup.object().shape({
-  lastLocationLat: Yup.number()
-    .min(0, "Min 0")
-    .max(150, "Max 150")
-    .required("Required")
-    .integer("Must be integer"),
-  lastLocationLng: Yup.number()
-    .min(0, "Min 0")
-    .max(150, "Max 150")
-    .integer("Must be integer")
-    .required("Required"),
+  infected: Yup.string().required("Required"),
 });
 
-const LocationContainer = ({ id, username }) => {
+const FlagContainer = ({ id, username }) => {
   const [modal, setModal] = useState({ status: false, message: "" });
 
   const onCloseModal = () => {
@@ -26,20 +17,29 @@ const LocationContainer = ({ id, username }) => {
   const sendRequest = async (values, { setSubmitting }) => {
     setSubmitting(true);
     try {
-      fetch(`${process.env.REACT_APP_BACKEND_URL}/people/${id}`, {
-        method: "PATCH",
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/people/${id}/report-infection`, {
+        method: "POST",
         headers: {
           "Accept": "application/json",
           "Content-Type": "application/json",
         },
         body: JSON.stringify(values),
       });
-      setModal({ status: true, message: "Location updated with success!" });
+      const data = await response.json();
+      if (response.status === 500) {
+        setModal({
+          status: true,
+          message: data.message,
+        });
+        formik.resetForm();
+        return;
+      }
+      setModal({ status: true, message: "Target flagged with success." });
       formik.resetForm();
     } catch (err) {
       setModal({
         status: true,
-        message: "Server is not responding. Try again.",
+        message: "Server is offline. Try again.",
       });
     }
     setSubmitting(false);
@@ -47,8 +47,7 @@ const LocationContainer = ({ id, username }) => {
 
   const formik = useFormik({
     initialValues: {
-      lastLocationLat: "",
-      lastLocationLng: "",
+      infected: ""
     },
     validationSchema,
     onSubmit: sendRequest,
@@ -70,4 +69,4 @@ const LocationContainer = ({ id, username }) => {
   );
 };
 
-export default LocationContainer;
+export default FlagContainer;

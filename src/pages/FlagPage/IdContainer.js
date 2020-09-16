@@ -1,22 +1,13 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import LocationForm from "./LocationForm";
+import IdForm from "./IdForm";
 
 const validationSchema = Yup.object().shape({
-  lastLocationLat: Yup.number()
-    .min(0, "Min 0")
-    .max(150, "Max 150")
-    .required("Required")
-    .integer("Must be integer"),
-  lastLocationLng: Yup.number()
-    .min(0, "Min 0")
-    .max(150, "Max 150")
-    .integer("Must be integer")
-    .required("Required"),
+  id: Yup.string().required("Required"),
 });
 
-const LocationContainer = ({ id, username }) => {
+const IdContainer = ({ setId, setUsername }) => {
   const [modal, setModal] = useState({ status: false, message: "" });
 
   const onCloseModal = () => {
@@ -26,36 +17,41 @@ const LocationContainer = ({ id, username }) => {
   const sendRequest = async (values, { setSubmitting }) => {
     setSubmitting(true);
     try {
-      fetch(`${process.env.REACT_APP_BACKEND_URL}/people/${id}`, {
-        method: "PATCH",
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(values),
-      });
-      setModal({ status: true, message: "Location updated with success!" });
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/people/${values.id}`
+        );
+      const data = await response.json();
+      if (response.status === 500) {
+        setModal({
+          status: true,
+          message: data.message,
+        });
+        formik.resetForm();
+        return;
+      }
       formik.resetForm();
+      setUsername(data.name);
+      setSubmitting(false);
+      setId(data._id);
     } catch (err) {
       setModal({
         status: true,
         message: "Server is not responding. Try again.",
       });
+      setSubmitting(false);
     }
-    setSubmitting(false);
   };
 
   const formik = useFormik({
     initialValues: {
-      lastLocationLat: "",
-      lastLocationLng: "",
+      id: "",
     },
     validationSchema,
     onSubmit: sendRequest,
   });
 
   return (
-    <LocationForm
+    <IdForm
       values={formik.values}
       errors={formik.errors}
       touched={formik.touched}
@@ -65,9 +61,8 @@ const LocationContainer = ({ id, username }) => {
       isSubmitting={formik.isSubmitting}
       modal={modal}
       onCloseModal={onCloseModal}
-      username={username}
     />
   );
 };
 
-export default LocationContainer;
+export default IdContainer;

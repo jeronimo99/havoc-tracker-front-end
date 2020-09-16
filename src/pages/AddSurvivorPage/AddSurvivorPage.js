@@ -58,18 +58,18 @@ const AddSurvivorPage = () => {
         {
           method: "POST",
           headers: {
-            Accept: "application/json",
+            "Accept": "application/json",
             "Content-Type": "application/json",
           },
           body: JSON.stringify(values),
         }
       );
-      const person = await response.json();
+      const data = await response.json();
       formik.resetForm();
       setSubmitting(false);
       setModal({
         status: true,
-        message: `Success. Identification pass: ${person._id}`,
+        message: `Success. Identification pass: ${data._id}`,
       });
     } catch (err) {
       setSubmitting(false);

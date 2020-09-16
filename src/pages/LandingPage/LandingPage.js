@@ -1,8 +1,15 @@
-import React from 'react';
-import Landing from './Landing';
+import React from "react";
+import { Wrapper, Card, Title, Subtitle } from "./styles";
 
 const LandingPage = () => {
-  return <Landing/>
+  return (
+    <Wrapper>
+      <Card>
+        <Title>The Resident Zombie</Title>
+        <Subtitle>Surviving better...</Subtitle>
+      </Card>
+    </Wrapper>
+  );
 };
 
 export default LandingPage;

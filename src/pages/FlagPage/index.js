@@ -1,3 +1,3 @@
-import FlagPage from "./FlagPage";
+import FlagPage from './FlagPage';
 
 export default FlagPage;

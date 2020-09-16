@@ -22,6 +22,9 @@ export const Form = styled.form`
   border: 1px solid ${(props) => props.theme.colors.secondaryDark};
   padding: 15px;
   border-radius: 3px;
+  @media(max-width: 768px){
+    width: 90%;
+  };
 `;
 
 export const InputGroup = styled.div`

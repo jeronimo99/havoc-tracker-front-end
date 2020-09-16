@@ -1,9 +1,10 @@
 import React from "react";
-import { Wrapper, Link } from "./styles";
+import { Wrapper, Logo, Link } from "./styles";
 
-const Sidebar = () => {
+const Navbar = () => {
   return (
     <Wrapper>
+      <Logo to={"/"} >The Resident Zombie</Logo>
       <Link to={"/add-survivor"}>Add Survivor</Link>
       <Link to={"/survivors"}>List Survivors</Link>
       <Link to={"/update-location"}>Update Location</Link>
@@ -14,4 +15,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default Navbar;

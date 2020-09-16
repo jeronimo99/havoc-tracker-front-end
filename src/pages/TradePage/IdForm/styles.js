@@ -7,17 +7,13 @@ export const Wrapper = styled.div`
   height: 100vh;
 `;
 
-export const Greetings = styled.span`
-  align-self: flex-start;
-`;
-
 export const Title = styled.h2`
   font-size: ${props => props.theme.fontSizes.huge};
 `;
 
 export const Form = styled.form`
   width: 500px;
-  height: 220px;
+  height: 280px;
   display: flex;
   justify-content: space-between;
   align-items: center;

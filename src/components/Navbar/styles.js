@@ -17,6 +17,14 @@ export const Wrapper = styled.aside`
   }
 `;
 
+export const Logo = styled(NavLink)`
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+  color: ${props => props.theme.fonts.primary};
+  font-size: ${props => props.theme.fontSizes.huge};
+`;
+
 export const Link = styled(NavLink)`
   border-top: 1px solid ${props => props.theme.colors.primaryDark};
   color: ${props => props.theme.fonts.primary};
