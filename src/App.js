@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -7,20 +7,37 @@ import {
 } from "react-router-dom";
 import Theme from "./Theme";
 import Navbar from "./components/Navbar";
-import {Main} from "./components/styles";
+import Sidebar from "./components/Sidebar";
+import { Main, Hamburger} from "./components/styles";
 import LandingPage from "./pages/LandingPage";
 import AddSurvivorPage from "./pages/AddSurvivorPage";
 import SurvivorsPage from "./pages/SurvivorsPage";
-import UpdatePage from './pages/UpdatePage';
-import TradePage from './pages/TradePage';
-import FlagPage from './pages/FlagPage';
-import ReportPage from './pages/ReportPage';
+import UpdatePage from "./pages/UpdatePage";
+import TradePage from "./pages/TradePage";
+import FlagPage from "./pages/FlagPage";
+import ReportPage from "./pages/ReportPage";
 
-function App() {
+const App = () => {
+  const [sidebar, setSidebar] = useState(false);
+
+  const onOpenSidebar = () => {
+    setSidebar(true);
+  };
+
+  const onCloseSidebar = () => {
+    setSidebar(false);
+  };
+
   return (
     <Theme>
-      <Router>
+      <Router>      
+        <Hamburger onClick={onOpenSidebar} />
         <Navbar />
+        {sidebar && (
+          <Sidebar
+            onCloseSidebar={onCloseSidebar}
+          />
+        )}
         <Main>
           <Switch>
             <Route path="/" exact component={LandingPage} />
@@ -36,6 +53,6 @@ function App() {
       </Router>
     </Theme>
   );
-}
+};
 
 export default App;

@@ -4,9 +4,10 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   @media (max-width: 768px) {
     flex-direction: column;
+    padding-top: 50px;
   } ;
 `;
 
