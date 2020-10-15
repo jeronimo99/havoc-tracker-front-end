@@ -4,14 +4,14 @@ import price from "../../utils/price";
 
 const TradeContainer = ({ user1, user2 }) => {
   const [result, setResult] = useState(0);
-  const [user1FijiWater, setUser1FijiWater] = useState(0);
-  const [user1CampbellSoup, setUser1CampbellSoup] = useState(0);
-  const [user1FirstAidPouch, setUser1FirstAidPouch] = useState(0);
-  const [user1Ak47, setUser1Ak47] = useState(0);
-  const [user2FijiWater, setUser2FijiWater] = useState(0);
-  const [user2CampbellSoup, setUser2CampbellSoup] = useState(0);
-  const [user2FirstAidPouch, setUser2FirstAidPouch] = useState(0);
-  const [user2Ak47, setUser2Ak47] = useState(0);
+  const [user1water, setUser1water] = useState(0);
+  const [user1food, setUser1food] = useState(0);
+  const [user1firstAid, setUser1firstAid] = useState(0);
+  const [user1gun, setUser1gun] = useState(0);
+  const [user2water, setUser2water] = useState(0);
+  const [user2food, setUser2food] = useState(0);
+  const [user2firstAid, setUser2firstAid] = useState(0);
+  const [user2gun, setUser2gun] = useState(0);
 
   const [isLoading, setIsLoading] = useState(false);
   const [modal, setModal] = useState({ status: false, message: "" });
@@ -22,25 +22,25 @@ const TradeContainer = ({ user1, user2 }) => {
 
   useEffect(() => {
     const evaluate =
-      user1FijiWater * price.fijiWater +
-      user1CampbellSoup * price.campbellSoup +
-      user1FirstAidPouch * price.firstAidPouch +
-      user1Ak47 * price.ak47 -
-      (user2FijiWater * price.fijiWater +
-        user2CampbellSoup * price.campbellSoup +
-        user2FirstAidPouch * price.firstAidPouch +
-        user2Ak47 * price.ak47);
+      user1water * price.water +
+      user1food * price.food +
+      user1firstAid * price.firstAid +
+      user1gun * price.gun -
+      (user2water * price.water +
+        user2food * price.food +
+        user2firstAid * price.firstAid +
+        user2gun * price.gun);
 
     setResult(evaluate);
   }, [
-    user1FijiWater,
-    user1CampbellSoup,
-    user1FirstAidPouch,
-    user1Ak47,
-    user2FijiWater,
-    user2CampbellSoup,
-    user2FirstAidPouch,
-    user2Ak47,
+    user1water,
+    user1food,
+    user1firstAid,
+    user1gun,
+    user2water,
+    user2food,
+    user2firstAid,
+    user2gun,
   ]);
 
   const validation = (value, max) => {
@@ -53,77 +53,59 @@ const TradeContainer = ({ user1, user2 }) => {
     return value;
   };
 
-  const user1FijiWaterHandler = (e) => {
+  const user1waterHandler = (e) => {
     e.preventDefault();
-    const validatedValue = validation(
-      e.target.value,
-      user1.inventory.fijiWater
-    );
-    setUser1FijiWater(validatedValue);
+    const validatedValue = validation(e.target.value, user1.inventory.water);
+    setUser1water(validatedValue);
   };
-  const user1CampbellSoupHandler = (e) => {
+  const user1foodHandler = (e) => {
     e.preventDefault();
-    const validatedValue = validation(
-      e.target.value,
-      user1.inventory.campbellSoup
-    );
-    setUser1CampbellSoup(validatedValue);
+    const validatedValue = validation(e.target.value, user1.inventory.food);
+    setUser1food(validatedValue);
   };
-  const user1FirstAidPouchHandler = (e) => {
+  const user1firstAidHandler = (e) => {
     e.preventDefault();
-    const validatedValue = validation(
-      e.target.value,
-      user1.inventory.firstAidPouch
-    );
-    setUser1FirstAidPouch(validatedValue);
+    const validatedValue = validation(e.target.value, user1.inventory.firstAid);
+    setUser1firstAid(validatedValue);
   };
-  const user1Ak47Handler = (e) => {
+  const user1gunHandler = (e) => {
     e.preventDefault();
-    const validatedValue = validation(e.target.value, user1.inventory.ak47);
-    setUser1Ak47(validatedValue);
+    const validatedValue = validation(e.target.value, user1.inventory.gun);
+    setUser1gun(validatedValue);
   };
-  const user2FijiWaterHandler = (e) => {
+  const user2waterHandler = (e) => {
     e.preventDefault();
-    const validatedValue = validation(
-      e.target.value,
-      user2.inventory.fijiWater
-    );
-    setUser2FijiWater(validatedValue);
+    const validatedValue = validation(e.target.value, user2.inventory.water);
+    setUser2water(validatedValue);
   };
-  const user2CampbellSoupHandler = (e) => {
+  const user2foodHandler = (e) => {
     e.preventDefault();
-    const validatedValue = validation(
-      e.target.value,
-      user2.inventory.campbellSoup
-    );
-    setUser2CampbellSoup(validatedValue);
+    const validatedValue = validation(e.target.value, user2.inventory.food);
+    setUser2food(validatedValue);
   };
-  const user2FirstAidPouchHandler = (e) => {
+  const user2firstAidHandler = (e) => {
     e.preventDefault();
-    const validatedValue = validation(
-      e.target.value,
-      user2.inventory.firstAidPouch
-    );
-    setUser2FirstAidPouch(validatedValue);
+    const validatedValue = validation(e.target.value, user2.inventory.firstAid);
+    setUser2firstAid(validatedValue);
   };
-  const user2Ak47Handler = (e) => {
+  const user2gunHandler = (e) => {
     e.preventDefault();
-    const validatedValue = validation(e.target.value, user2.inventory.ak47);
-    setUser2Ak47(validatedValue);
+    const validatedValue = validation(e.target.value, user2.inventory.gun);
+    setUser2gun(validatedValue);
   };
 
   const onSubmit = async () => {
     setIsLoading(true);
     try {
       if (
-        user1FijiWater === 0 &&
-        user1CampbellSoup === 0 &&
-        user1FirstAidPouch === 0 &&
-        user1Ak47 === 0 &&
-        user2FijiWater === 0 &&
-        user2CampbellSoup === 0 &&
-        user2FirstAidPouch === 0 &&
-        user2Ak47 === 0 &&
+        user1water === 0 &&
+        user1food === 0 &&
+        user1firstAid === 0 &&
+        user1gun === 0 &&
+        user2water === 0 &&
+        user2food === 0 &&
+        user2firstAid === 0 &&
+        user2gun === 0 &&
         result === 0
       ) {
         setModal({
@@ -143,22 +125,22 @@ const TradeContainer = ({ user1, user2 }) => {
 
       const data = {
         id: user2._id,
-        user1FijiWater: parseFloat(user1FijiWater),
-        user1CampbellSoup: parseFloat(user1CampbellSoup),
-        user1FirstAidPouch: parseFloat(user1FirstAidPouch),
-        user1Ak47: parseFloat(user1Ak47),
-        user2FijiWater: parseFloat(user2FijiWater),
-        user2CampbellSoup: parseFloat(user2CampbellSoup),
-        user2FirstAidPouch: parseFloat(user2FirstAidPouch),
-        user2Ak47: parseFloat(user2Ak47)
-      }
+        user1water: parseFloat(user1water),
+        user1food: parseFloat(user1food),
+        user1firstAid: parseFloat(user1firstAid),
+        user1gun: parseFloat(user1gun),
+        user2water: parseFloat(user2water),
+        user2food: parseFloat(user2food),
+        user2firstAid: parseFloat(user2firstAid),
+        user2gun: parseFloat(user2gun),
+      };
 
       const response = await fetch(
         `${process.env.REACT_APP_BACKEND_URL}/people/${user1._id}/properties/trade-item`,
         {
           method: "POST",
           headers: {
-            "Accept": "application/json",
+            Accept: "application/json",
             "Content-Type": "application/json",
           },
           body: JSON.stringify(data),
@@ -173,13 +155,12 @@ const TradeContainer = ({ user1, user2 }) => {
         setIsLoading(false);
         return;
       }
-      
+
       setModal({
         status: true,
         message: "The trade was a success!",
       });
       setIsLoading(false);
-      
     } catch (err) {
       setModal({
         status: true,
@@ -195,22 +176,22 @@ const TradeContainer = ({ user1, user2 }) => {
       user2={user2}
       result={result}
       price={price}
-      user1FijiWater={user1FijiWater}
-      user1FijiWaterHandler={user1FijiWaterHandler}
-      user1CampbellSoup={user1CampbellSoup}
-      user1CampbellSoupHandler={user1CampbellSoupHandler}
-      user1FirstAidPouch={user1FirstAidPouch}
-      user1FirstAidPouchHandler={user1FirstAidPouchHandler}
-      user1Ak47={user1Ak47}
-      user1Ak47Handler={user1Ak47Handler}
-      user2FijiWater={user2FijiWater}
-      user2FijiWaterHandler={user2FijiWaterHandler}
-      user2CampbellSoup={user2CampbellSoup}
-      user2CampbellSoupHandler={user2CampbellSoupHandler}
-      user2FirstAidPouch={user2FirstAidPouch}
-      user2FirstAidPouchHandler={user2FirstAidPouchHandler}
-      user2Ak47={user2Ak47}
-      user2Ak47Handler={user2Ak47Handler}
+      user1water={user1water}
+      user1waterHandler={user1waterHandler}
+      user1food={user1food}
+      user1foodHandler={user1foodHandler}
+      user1firstAid={user1firstAid}
+      user1firstAidHandler={user1firstAidHandler}
+      user1gun={user1gun}
+      user1gunHandler={user1gunHandler}
+      user2water={user2water}
+      user2waterHandler={user2waterHandler}
+      user2food={user2food}
+      user2foodHandler={user2foodHandler}
+      user2firstAid={user2firstAid}
+      user2firstAidHandler={user2firstAidHandler}
+      user2gun={user2gun}
+      user2gunHandler={user2gunHandler}
       onSubmit={onSubmit}
       modal={modal}
       onCloseModal={onCloseModal}

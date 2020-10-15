@@ -5,10 +5,10 @@ const ReportPage = () => {
   const [infected, setInfected] = useState(0);
   const [nonInfected, setNonInfected] = useState(0);
   const [inventory, setInventory] = useState({
-    fijiWater: 0,
-    campbellSoup: 0,
-    firstAidPouch: 0,
-    ak47: 0,
+    water: 0,
+    food: 0,
+    firstAid: 0,
+    gun: 0,
   });
 
   const [infectedPoints, setInfectedPoints] = useState(0);

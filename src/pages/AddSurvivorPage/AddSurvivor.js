@@ -15,9 +15,9 @@ import {
   Error,
   Subtitle,
   Button,
-  Loader
+  Loader,
 } from "./styles";
-import Modal from '../../components/Modal';
+import Modal from "../../components/Modal";
 
 const AddSurvivor = ({
   values,
@@ -28,7 +28,7 @@ const AddSurvivor = ({
   handleSubmit,
   isSubmitting,
   modal,
-  onCloseModal
+  onCloseModal,
 }) => {
   return (
     <Wrapper>
@@ -82,10 +82,7 @@ const AddSurvivor = ({
                   value={values.lastLocationLat}
                 />
               </Line>
-              <Error>
-                {touched.lastLocationLat &&
-                  errors.lastLocationLat}
-              </Error>
+              <Error>{touched.lastLocationLat && errors.lastLocationLat}</Error>
             </Column>
             <Column>
               <Line>
@@ -99,10 +96,7 @@ const AddSurvivor = ({
                   value={values.lastLocationLng}
                 />
               </Line>
-              <Error>
-                {touched.lastLocationLng &&
-                  errors.lastLocationLng}
-              </Error>
+              <Error>{touched.lastLocationLng && errors.lastLocationLng}</Error>
             </Column>
           </Line>
         </InfoColumn>
@@ -110,59 +104,62 @@ const AddSurvivor = ({
         <InventoryColumn>
           <Subtitle>Inventory</Subtitle>
 
-          <Label htmlFor="fijiWater">Fiji water</Label>
+          <Label htmlFor="water">Fiji water</Label>
           <TextInput
-            id="fijiWater"
+            id="water"
             type="number"
             onChange={handleChange}
             onBlur={handleBlur}
-            value={values.fijiWater}
+            value={values.water}
           />
-          <Error>
-            {touched.fijiWater && errors.fijiWater}
-          </Error>
+          <Error>{touched.water && errors.water}</Error>
 
-          <Label htmlFor="campbellSoup">Campbell soup</Label>
+          <Label htmlFor="food">Campbell soup</Label>
           <TextInput
-            id="campbellSoup"
+            id="food"
             type="number"
             onChange={handleChange}
             onBlur={handleBlur}
-            value={values.campbellSoup}
+            value={values.food}
           />
-          <Error>
-            {touched.campbellSoup && errors.campbellSoup}
-          </Error>
+          <Error>{touched.food && errors.food}</Error>
 
-          <Label htmlFor="firstAidPouch">First aid pouch</Label>
+          <Label htmlFor="firstAid">First aid pouch</Label>
           <TextInput
-            id="firstAidPouch"
+            id="firstAid"
             type="number"
             onChange={handleChange}
             onBlur={handleBlur}
-            value={values.firstAidPouch}
+            value={values.firstAid}
           />
-          <Error>
-            {touched.firstAidPouch &&
-              errors.firstAidPouch}
-          </Error>
+          <Error>{touched.firstAid && errors.firstAid}</Error>
 
-          <Label htmlFor="ak47">AK47</Label>
+          <Label htmlFor="gun">gun</Label>
           <TextInput
-            id="ak47"
+            id="gun"
             type="number"
             onChange={handleChange}
             onBlur={handleBlur}
-            value={values.ak47}
+            value={values.gun}
           />
-          <Error>{touched.ak47 && errors.ak47}</Error>
+          <Error>{touched.gun && errors.gun}</Error>
 
-          {isSubmitting ? <Loader/> : <Button type="submit" disabled={isSubmitting} onClick={handleSubmit}>
-            Submit
-          </Button>}
+          {isSubmitting ? (
+            <Loader />
+          ) : (
+            <Button
+              type="submit"
+              disabled={isSubmitting}
+              onClick={handleSubmit}
+            >
+              Submit
+            </Button>
+          )}
         </InventoryColumn>
       </Form>
-      {modal.status && <Modal onCloseModal={onCloseModal} >{modal.message}</Modal>}
+      {modal.status && (
+        <Modal onCloseModal={onCloseModal}>{modal.message}</Modal>
+      )}
     </Wrapper>
   );
 };

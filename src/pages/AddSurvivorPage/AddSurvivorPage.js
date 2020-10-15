@@ -21,22 +21,22 @@ const validationSchema = Yup.object().shape({
     .max(150, "Max 150")
     .integer("Number must be an integer")
     .required("Required"),
-  fijiWater: Yup.number()
+  water: Yup.number()
     .positive("Number must me positive")
     .integer("Number must be integer")
     .max(100, "Limit of 100 units")
     .required("Required"),
-  campbellSoup: Yup.number()
+  food: Yup.number()
     .positive("Number must me positive")
     .integer("Number must be integer")
     .max(100, "Limit of 100 units")
     .required("Required"),
-  firstAidPouch: Yup.number()
+  firstAid: Yup.number()
     .positive("Number must me positive")
     .integer("Number must be integer")
     .max(100, "Limit of 100 units")
     .required("Required"),
-  ak47: Yup.number()
+  gun: Yup.number()
     .positive("Number must me positive")
     .integer("Number must be integer")
     .max(100, "Limit of 100 units")
@@ -58,7 +58,7 @@ const AddSurvivorPage = () => {
         {
           method: "POST",
           headers: {
-            "Accept": "application/json",
+            Accept: "application/json",
             "Content-Type": "application/json",
           },
           body: JSON.stringify(values),
@@ -87,10 +87,10 @@ const AddSurvivorPage = () => {
       gender: "male",
       lastLocationLat: "",
       lastLocationLng: "",
-      fijiWater: "",
-      campbellSoup: "",
-      firstAidPouch: "",
-      ak47: "",
+      water: "",
+      food: "",
+      firstAid: "",
+      gun: "",
     },
     validationSchema,
     onSubmit: sendRequest,

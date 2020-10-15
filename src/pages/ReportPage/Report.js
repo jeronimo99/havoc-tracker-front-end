@@ -37,22 +37,28 @@ const Report = ({
               <Label>Non-infected: </Label> <Data>{nonInfected} %</Data>
             </Line>
             <Line>
-              <Label>Average Fiji Water: </Label> <Data>{inventory.fijiWater} un</Data>
+              <Label>Average Fiji Water: </Label>{" "}
+              <Data>{inventory.water} un</Data>
             </Line>
             <Line>
-              <Label>Average Campbell Soup: </Label> <Data>{inventory.campbellSoup} un</Data>
+              <Label>Average Campbell Soup: </Label>{" "}
+              <Data>{inventory.food} un</Data>
             </Line>
             <Line>
-              <Label>Average First Aid Pouch: </Label> <Data>{inventory.firstAidPouch} un</Data>
+              <Label>Average First Aid Pouch: </Label>{" "}
+              <Data>{inventory.firstAid} un</Data>
             </Line>
             <Line>
-              <Label>Average AK-47: </Label> <Data>{inventory.ak47} un</Data>
+              <Label>Average AK-47: </Label> <Data>{inventory.gun} un</Data>
             </Line>
             <Line>
-              <Label>Infected Points Lost: </Label> <Data>{infectedPoints} points</Data>
+              <Label>Infected Points Lost: </Label>{" "}
+              <Data>{infectedPoints} points</Data>
             </Line>
           </Card>
-          {modal.status && <Modal onCloseModal={onCloseModal} >{modal.message}</Modal>}
+          {modal.status && (
+            <Modal onCloseModal={onCloseModal}>{modal.message}</Modal>
+          )}
         </Wrapper>
       )}
     </>

@@ -12,7 +12,7 @@ import {
   Result,
   Button,
   Loader,
-  Text
+  Text,
 } from "./styles";
 import Modal from "../../../components/Modal";
 
@@ -21,113 +21,127 @@ const Trade = ({
   user2,
   result,
   price,
-  user1FijiWater,
-  user1CampbellSoup,
-  user1FirstAidPouch,
-  user1Ak47,
-  user2FijiWater,
-  user2CampbellSoup,
-  user2FirstAidPouch,
-  user2Ak47,
-  user1FijiWaterHandler,
-  user1CampbellSoupHandler,
-  user1FirstAidPouchHandler,
-  user1Ak47Handler,
-  user2FijiWaterHandler,
-  user2CampbellSoupHandler,
-  user2FirstAidPouchHandler,
-  user2Ak47Handler,
+  user1water,
+  user1food,
+  user1firstAid,
+  user1gun,
+  user2water,
+  user2food,
+  user2firstAid,
+  user2gun,
+  user1waterHandler,
+  user1foodHandler,
+  user1firstAidHandler,
+  user1gunHandler,
+  user2waterHandler,
+  user2foodHandler,
+  user2firstAidHandler,
+  user2gunHandler,
   onSubmit,
   modal,
   onCloseModal,
-  isLoading
+  isLoading,
 }) => {
   return (
     <Wrapper>
-      {isLoading ? <Loader/> : <><Card>
-        <User>{user1.name}</User>
-        <Line>
-          <Column>
-            <Title>Items (value)</Title>
-            <Label>Fiji Water (x{price.fijiWater})</Label>
-            <Label>Campbell Soup (x{price.campbellSoup})</Label>
-            <Label>First Aid Pouch (x{price.firstAidPouch})</Label>
-            <Label>AK-47 (x{price.ak47})</Label>
-          </Column>
-          <Column>
-            <Title>Available</Title>
-            <Label>{user1.inventory.fijiWater}</Label>
-            <Label>{user1.inventory.campbellSoup}</Label>
-            <Label>{user1.inventory.firstAidPouch}</Label>
-            <Label>{user1.inventory.ak47}</Label>
-          </Column>
-          <Column>
-            <Title>Trade</Title>
-            <Input
-              type="number"
-              value={user1FijiWater}
-              onChange={user1FijiWaterHandler}
-            />
-            <Input
-              type="number"
-              value={user1CampbellSoup}
-              onChange={user1CampbellSoupHandler}
-            />
-            <Input
-              type="number"
-              value={user1FirstAidPouch}
-              onChange={user1FirstAidPouchHandler}
-            />
-            <Input type="number" value={user1Ak47} onChange={user1Ak47Handler} />
-          </Column>
-        </Line>
-      </Card>
-      <EvaluateColumn>
-        <Text>Balance</Text>
-        <Result>{result}</Result>
-        <Button onClick={onSubmit} >Trade</Button>
-      </EvaluateColumn>
-      <Card>
-        <User>{user2.name}</User>
-        <Line>
-          <Column>
-            <Title>Trade</Title>
-            <Input
-              type="number"
-              value={user2FijiWater}
-              onChange={user2FijiWaterHandler}
-            />
-            <Input
-              type="number"
-              value={user2CampbellSoup}
-              onChange={user2CampbellSoupHandler}
-            />
-            <Input
-              type="number"
-              value={user2FirstAidPouch}
-              onChange={user2FirstAidPouchHandler}
-            />
-            <Input type="number" value={user2Ak47} onChange={user2Ak47Handler} />
-          </Column>
-          <Column>
-            <Title>Available</Title>
-            <Label>{user2.inventory.fijiWater}</Label>
-            <Label>{user2.inventory.campbellSoup}</Label>
-            <Label>{user2.inventory.firstAidPouch}</Label>
-            <Label>{user2.inventory.ak47}</Label>
-          </Column>
-          <Column>
-            <Title>Items (value)</Title>
-            <Label>Fiji Water (x{price.fijiWater})</Label>
-            <Label>Campbell Soup (x{price.campbellSoup})</Label>
-            <Label>First Aid Pouch (x{price.firstAidPouch})</Label>
-            <Label>AK-47 (x{price.ak47})</Label>
-          </Column>
-        </Line>
-      </Card>
-      {modal.status && (
-        <Modal onCloseModal={onCloseModal}>{modal.message}</Modal>
-      )}</>}
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <Card>
+            <User>{user1.name}</User>
+            <Line>
+              <Column>
+                <Title>Items (value)</Title>
+                <Label>Fiji Water (x{price.water})</Label>
+                <Label>Campbell Soup (x{price.food})</Label>
+                <Label>First Aid Pouch (x{price.firstAid})</Label>
+                <Label>AK-47 (x{price.gun})</Label>
+              </Column>
+              <Column>
+                <Title>Available</Title>
+                <Label>{user1.inventory.water}</Label>
+                <Label>{user1.inventory.food}</Label>
+                <Label>{user1.inventory.firstAid}</Label>
+                <Label>{user1.inventory.gun}</Label>
+              </Column>
+              <Column>
+                <Title>Trade</Title>
+                <Input
+                  type="number"
+                  value={user1water}
+                  onChange={user1waterHandler}
+                />
+                <Input
+                  type="number"
+                  value={user1food}
+                  onChange={user1foodHandler}
+                />
+                <Input
+                  type="number"
+                  value={user1firstAid}
+                  onChange={user1firstAidHandler}
+                />
+                <Input
+                  type="number"
+                  value={user1gun}
+                  onChange={user1gunHandler}
+                />
+              </Column>
+            </Line>
+          </Card>
+          <EvaluateColumn>
+            <Text>Balance</Text>
+            <Result>{result}</Result>
+            <Button onClick={onSubmit}>Trade</Button>
+          </EvaluateColumn>
+          <Card>
+            <User>{user2.name}</User>
+            <Line>
+              <Column>
+                <Title>Trade</Title>
+                <Input
+                  type="number"
+                  value={user2water}
+                  onChange={user2waterHandler}
+                />
+                <Input
+                  type="number"
+                  value={user2food}
+                  onChange={user2foodHandler}
+                />
+                <Input
+                  type="number"
+                  value={user2firstAid}
+                  onChange={user2firstAidHandler}
+                />
+                <Input
+                  type="number"
+                  value={user2gun}
+                  onChange={user2gunHandler}
+                />
+              </Column>
+              <Column>
+                <Title>Available</Title>
+                <Label>{user2.inventory.water}</Label>
+                <Label>{user2.inventory.food}</Label>
+                <Label>{user2.inventory.firstAid}</Label>
+                <Label>{user2.inventory.gun}</Label>
+              </Column>
+              <Column>
+                <Title>Items (value)</Title>
+                <Label>Fiji Water (x{price.water})</Label>
+                <Label>Campbell Soup (x{price.food})</Label>
+                <Label>First Aid Pouch (x{price.firstAid})</Label>
+                <Label>AK-47 (x{price.gun})</Label>
+              </Column>
+            </Line>
+          </Card>
+          {modal.status && (
+            <Modal onCloseModal={onCloseModal}>{modal.message}</Modal>
+          )}
+        </>
+      )}
     </Wrapper>
   );
 };

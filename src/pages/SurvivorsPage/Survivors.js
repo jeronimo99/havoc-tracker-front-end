@@ -14,7 +14,7 @@ import {
   LoaderWrapper,
   Loader,
 } from "./styles";
-import Modal from '../../components/Modal';
+import Modal from "../../components/Modal";
 
 const Survivors = ({ survivors, isLoading, modal, onCloseModal }) => {
   return (
@@ -48,15 +48,17 @@ const Survivors = ({ survivors, isLoading, modal, onCloseModal }) => {
               </Line>
               {!survivor.isInfected && (
                 <ItemLine>
-                  <Item>Water: {survivor.inventory.fijiWater}</Item>
-                  <Item>Soup: {survivor.inventory.campbellSoup}</Item>
-                  <Item>First aid: {survivor.inventory.firstAidPouch}</Item>
-                  <Item>AK-47: {survivor.inventory.ak47}</Item>
+                  <Item>Water: {survivor.inventory.water}</Item>
+                  <Item>Soup: {survivor.inventory.food}</Item>
+                  <Item>First aid: {survivor.inventory.firstAid}</Item>
+                  <Item>AK-47: {survivor.inventory.gun}</Item>
                 </ItemLine>
               )}
             </Card>
           ))}
-          {modal.status && <Modal onCloseModal={onCloseModal} >{modal.message}</Modal>}
+          {modal.status && (
+            <Modal onCloseModal={onCloseModal}>{modal.message}</Modal>
+          )}
         </Wrapper>
       )}
     </>
