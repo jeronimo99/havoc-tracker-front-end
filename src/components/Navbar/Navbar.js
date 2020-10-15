@@ -4,7 +4,7 @@ import { Wrapper, Logo, Link } from "./styles";
 const Navbar = () => {
   return (
     <Wrapper>
-      <Logo to={"/"} >The Resident Zombie</Logo>
+      <Logo to={"/"}>Havoc Tracker</Logo>
       <Link to={"/add-survivor"}>Add Survivor</Link>
       <Link to={"/survivors"}>List Survivors</Link>
       <Link to={"/update-location"}>Update Location</Link>

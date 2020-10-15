@@ -5,7 +5,7 @@ const LandingPage = () => {
   return (
     <Wrapper>
       <Card>
-        <Title>The Resident Zombie</Title>
+        <Title>Havoc Tracker</Title>
         <Subtitle>Surviving better...</Subtitle>
       </Card>
     </Wrapper>
