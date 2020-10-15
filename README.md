@@ -5,6 +5,8 @@
 Havoc Tracker is a project for helping survivors in a Zombie Apocalypse. The frontend is made in React, using react-router for locally routing, styled-components for CSS-in-JS styling, Formik for form handling and Yup for validation.
 The web app is responsive, so it is easily adapted for mobiles.
 
+Demo: https://havoc-tracker-front-end.vercel.app/
+
 ## Install
 
 ```sh
