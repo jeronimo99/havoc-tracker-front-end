@@ -134,7 +134,7 @@ const AddSurvivor = ({
           />
           <Error>{touched.firstAid && errors.firstAid}</Error>
 
-          <Label htmlFor="gun">gun</Label>
+          <Label htmlFor="gun">Guns</Label>
           <TextInput
             id="gun"
             type="number"
