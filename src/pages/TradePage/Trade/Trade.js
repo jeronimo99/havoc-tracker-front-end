@@ -53,10 +53,10 @@ const Trade = ({
             <Line>
               <Column>
                 <Title>Items (value)</Title>
-                <Label>Fiji Water (x{price.water})</Label>
-                <Label>Campbell Soup (x{price.food})</Label>
-                <Label>First Aid Pouch (x{price.firstAid})</Label>
-                <Label>AK-47 (x{price.gun})</Label>
+                <Label>Water (x{price.water})</Label>
+                <Label>Food (x{price.food})</Label>
+                <Label>First Aid (x{price.firstAid})</Label>
+                <Label>Guns (x{price.gun})</Label>
               </Column>
               <Column>
                 <Title>Available</Title>
@@ -130,10 +130,10 @@ const Trade = ({
               </Column>
               <Column>
                 <Title>Items (value)</Title>
-                <Label>Fiji Water (x{price.water})</Label>
-                <Label>Campbell Soup (x{price.food})</Label>
-                <Label>First Aid Pouch (x{price.firstAid})</Label>
-                <Label>AK-47 (x{price.gun})</Label>
+                <Label>Water (x{price.water})</Label>
+                <Label>Food (x{price.food})</Label>
+                <Label>First Aid (x{price.firstAid})</Label>
+                <Label>Guns (x{price.gun})</Label>
               </Column>
             </Line>
           </Card>

@@ -37,19 +37,17 @@ const Report = ({
               <Label>Non-infected: </Label> <Data>{nonInfected} %</Data>
             </Line>
             <Line>
-              <Label>Average Fiji Water: </Label>{" "}
-              <Data>{inventory.water} un</Data>
+              <Label>Average Water: </Label> <Data>{inventory.water} un</Data>
             </Line>
             <Line>
-              <Label>Average Campbell Soup: </Label>{" "}
-              <Data>{inventory.food} un</Data>
+              <Label>Average Food: </Label> <Data>{inventory.food} un</Data>
             </Line>
             <Line>
-              <Label>Average First Aid Pouch: </Label>{" "}
+              <Label>Average First Aid: </Label>{" "}
               <Data>{inventory.firstAid} un</Data>
             </Line>
             <Line>
-              <Label>Average AK-47: </Label> <Data>{inventory.gun} un</Data>
+              <Label>Average Guns: </Label> <Data>{inventory.gun} un</Data>
             </Line>
             <Line>
               <Label>Infected Points Lost: </Label>{" "}

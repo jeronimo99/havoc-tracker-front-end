@@ -51,7 +51,7 @@ const Survivors = ({ survivors, isLoading, modal, onCloseModal }) => {
                   <Item>Water: {survivor.inventory.water}</Item>
                   <Item>Soup: {survivor.inventory.food}</Item>
                   <Item>First aid: {survivor.inventory.firstAid}</Item>
-                  <Item>AK-47: {survivor.inventory.gun}</Item>
+                  <Item>Guns: {survivor.inventory.gun}</Item>
                 </ItemLine>
               )}
             </Card>

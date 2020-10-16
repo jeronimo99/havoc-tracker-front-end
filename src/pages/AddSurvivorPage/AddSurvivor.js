@@ -104,7 +104,7 @@ const AddSurvivor = ({
         <InventoryColumn>
           <Subtitle>Inventory</Subtitle>
 
-          <Label htmlFor="water">Fiji water</Label>
+          <Label htmlFor="water">Water</Label>
           <TextInput
             id="water"
             type="number"
@@ -114,7 +114,7 @@ const AddSurvivor = ({
           />
           <Error>{touched.water && errors.water}</Error>
 
-          <Label htmlFor="food">Campbell soup</Label>
+          <Label htmlFor="food">Food</Label>
           <TextInput
             id="food"
             type="number"
@@ -124,7 +124,7 @@ const AddSurvivor = ({
           />
           <Error>{touched.food && errors.food}</Error>
 
-          <Label htmlFor="firstAid">First aid pouch</Label>
+          <Label htmlFor="firstAid">First Aid</Label>
           <TextInput
             id="firstAid"
             type="number"
